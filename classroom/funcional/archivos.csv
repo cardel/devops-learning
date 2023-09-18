@@ -1,0 +1,6 @@
+app/scalastyle_config.xml
+app/build.gradle
+app/src/test/scala/taller1/SizeListTest.scala
+app/src/test/scala/taller1/SortListTestKElemento.scala
+app/src/test/scala/taller1/SortListTestMayoresMenores.scala
+app/src/test/scala/taller1/SortListTestOrdenar.scala
