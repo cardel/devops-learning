@@ -2,10 +2,10 @@
 
 # Nombre del archivo CSV
 archivo_csv="estudiantes.csv"
-url="git@github.com:Programacion-funcional-Jueves/taller-1-jueves-"
-base="git@github.com:Programacion-funcional-Jueves/taller1.git"
-base_local="taller-1-jueves-"
-
+url="git@github.com:Programacion-funcional-2023-I/taller-3-reconocimiento-de-patrones-pfc-2023-ii-"
+base="git@github.com:Programacion-funcional-2023-I/taller2-pfc-2023-2.git"
+base_local="taller2-pfc-2023-2"
+students_base="taller-3-reconocimiento-de-patrones-pfc-2023-ii-"
 # Verificar si el archivo existe
 if [ ! -f "$archivo_csv" ]; then
     echo "El archivo $archivo_csv no existe."
@@ -36,11 +36,11 @@ git clone "$base"
 # Leer la lista de archivos y calcular el MD5sum para cada uno
 while IFS= read -r archivo; do
     # Verificar si el archivo existe
-    if [ ! -f "taller1/$archivo" ]; then
+    if [ ! -f "$base_local/$archivo" ]; then
         echo "El archivo $archivo no existe."
     else
         # Calcular el MD5sum del archivo y almacenarlo en una variable
-        md5sum=$(md5sum "taller1/$archivo" | awk '{print $1}')
+        md5sum=$(md5sum "$base_local/$archivo" | awk '{print $1}')
         # Almacenar el resultado en un arreglo o en una variable, según tus necesidades
         md5sums+=("$archivo $md5sum")
         #echo "MD5sum de $archivo: $md5sum"
@@ -54,8 +54,8 @@ for col in "${columnas[@]}"; do
         repo=$(echo "$col" | awk '{print $3}')
 	for item in "${md5sums[@]}"; do
 		md5origin=$(echo "$item" | awk '{print $2}')
-		archivo="$base_local$repo/$(echo $item | awk '{print $1}')"
-		if [ -f "$archivo" ]; then
+		archivo="$students_base$repo/$(echo $item | awk '{print $1}')"
+    if [ -f "$archivo" ]; then
 			md5repo=$(md5sum "$archivo" | awk '{print $1}')
 			if [ "$md5origin" != "$md5repo" ]; then
 				echo "$archivo" >> reportemodificacion.txt
@@ -65,6 +65,3 @@ for col in "${columnas[@]}"; do
 		fi
 	done
 done
-
-
-
