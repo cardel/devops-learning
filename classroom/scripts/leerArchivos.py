@@ -10,14 +10,14 @@ studentsData = pd.read_csv("students.csv")
 
 #Load data
 studentsData = studentsData[["usuario","codigo"]]
-gradesData = gradesData[["student_repository_name","points_available","points_awarded"]]
+gradesData = gradesData[["usuario","points_available","points_awarded"]]
 
 #Delete duplcates
 gradesData = gradesData.drop_duplicates()
 
 
 #Extract usuario
-gradesData["usuario"] = gradesData["student_repository_name"].apply(lambda x: "".join(x.split("-")11:]))
+#gradesData["usuario"] = gradesData["student_repository_name"].apply(lambda x: "".join(x.split("-")11:]))
 
 
 #lowercase usuario column
