@@ -24,7 +24,6 @@ gradesData = gradesData.drop_duplicates()
 studentsData["usuario"] = studentsData["usuario"].apply(lambda x: x.lower())
 gradesData["usuario"] = gradesData["usuario"].apply(lambda x: x.lower())
 
-
 #Hacer join de los datos por la columna usuario
 totalData = pd.merge(studentsData,gradesData,on="usuario") 
 
@@ -32,7 +31,7 @@ totalData = pd.merge(studentsData,gradesData,on="usuario")
 totalData["codigo"] = totalData["codigo"].apply(lambda x: str(x)+"-3743")
 
 #Calculate grade between 0 and 5
-totalData["nota"] = totalData["points_awarded"]/totalData["points_available"]*5
+totalData["nota"] = totalData["points_awarded"]/totalData["points_available"].astype(float)*5.0
 
 #Save to file 
 pd.DataFrame(totalData[["codigo","nota"]]).to_csv("notas.csv",index=False)
